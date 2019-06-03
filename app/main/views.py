@@ -90,8 +90,7 @@ def new_blog(uname):
         db.session.commit()
 
         members = Member.query.all()
-        for member in members:
-            mail_message("New Blog Post", "email/new_blog", member.email, member = member)
+       
 
         return redirect(url_for('main.profile',uname=user.username))
 

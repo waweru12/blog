@@ -11,6 +11,10 @@
 {% endblock %}
 
 {% block content %}
+{% if current_user.is_authenticated %}
+<a href="/user/{{current_user.username}}/blog" class="btn btn-success">+ Blog</a>
+
+{% endif %}
 
 <!-- Styles block -->
 </head>
@@ -110,6 +114,8 @@
 
         {% endif %}
         {% endif %}
+        
+   
     </div>
 </body>
 {% endblock %}
