@@ -88,6 +88,7 @@ def new_blog(uname):
 
         db.session.add(blog)
         db.session.commit()
+       
 
         members = Member.query.all()
        
