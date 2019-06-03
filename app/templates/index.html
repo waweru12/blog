@@ -54,8 +54,8 @@
 
             <div class="card">
                 <div class="card-header">
-                    The blog
-                    <div>
+                    
+                    
                         <form>
                             <input name='delete_this' value={{item.id}} style="display:none;">
                             <input type="submit" value="DELETE" class="btn btn-danger">
@@ -72,7 +72,7 @@
                 </div>
 
             </div>
-            <h4>comments</h4>
+            <h4><em>Remarks</em></h4>
 
             <div class="container">
                 {% if comments %}
@@ -106,7 +106,7 @@
         <br> <br> <br> <br>  <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>        
         <h4 style="font-style: italic;text-align:left;font-family: 'Ranga', cursive;font-size: 40px">Please sign up or login to post blogs </h4>
         {% if current_user.is_authenticated %}
-        <button><a href="/user/{{current_user.username}}/blog" class="btn btn- primary ">Your Blog</a></button>
+        <button><a href="/user/{{current_user.username}}/blog" class="btn btn- success ">Your Blog</a></button>
 
         {% endif %}
         {% endif %}
