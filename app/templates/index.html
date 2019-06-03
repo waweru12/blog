@@ -2,53 +2,54 @@
 
 <head>
 
-{% extends 'base.html' %}
-{% import 'macros.html' as macro %}
+    {% extends 'base.html' %}
+    {% import 'macros.html' as macro %}
 
-{% block styles%}
-{{ super() }}
+    {% block styles%}
+    {{ super() }}
 
-{% endblock %}
+    {% endblock %}
 
-{% block content %}
-{% if current_user.is_authenticated %}
-<a href="/user/{{current_user.username}}/blog" class="btn btn-success">+ Blog</a>
+    {% block content %}
+    {% if current_user.is_authenticated %}
+    <a href="/user/{{current_user.username}}/blog" class="btn btn-primary"> Press to add blog</a>
 
-{% endif %}
+    {% endif %}
 
-<!-- Styles block -->
+    <!-- Styles block -->
 </head>
 
-<body style="font-family: 'Russo One', sans-serif;background-image: url(https//phlearn.com/wp-content/uploads/2018/06/Change-Remove-Backgrounds-Silhouette-After.jpg); 
+<body style="font-family: 'Russo One', sans-serif;background-image: url(https://wildaid.org/wp-content/uploads/2017/09/dark-blue-ocean-surface-seen-from-underwater-looped-slow-motion-fractal-waves-underwater-and-rays-of-sunlight-shining-through-4k-seamless-loop-video_hy1i0dcrl_thumbnail-full01-1024x576.png); 
     background-repeat: no-repeat;
     background-size: cover">
 
 
-   
-                <h1 style="text-align: center;font-family: 'Luckiest Guy', cursive;margin-bottom: 30px;font-size: 100px" class="title">Blog</h1>
-                
+
+    <h1 style="text-align: center;font-family: 'Luckiest Guy', cursive;margin-bottom: 30px;font-size: 100px"
+        class="title">Blog</h1>
 
 
-                    </ul>
-                </div>
 
-            </div>
+    </ul>
+    </div>
+
+    </div>
+    </div>
+    <div style="font-family: 'Pacifico', cursive; text-align:center;font-size: 40px">
+        <div class="card-header">
+            Random Quote
         </div>
-        <div style="font-family: 'Pacifico', cursive; text-align:center;font-size: 40px">
-            <div class="card-header">
-                Random Quote
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">
+        <div class="card-body">
+            <h5 class="card-title">
 
-                    {{quote.author}}
-                </h5>
-                <p class="card-text">{{quote.quote}}.</p>
+                {{quote.author}}
+            </h5>
+            <p class="card-text">{{quote.quote}}.</p>
 
-            </div>
         </div>
     </div>
-    
+    </div>
+
     <br><br>
     <div class="container">
         {% if blogs %}
@@ -58,64 +59,66 @@
 
             <div class="card">
                 <div class="card-header">
-                    
-                    
-                        <form>
-                            <input name='delete_this' value={{item.id}} style="display:none;">
-                            <input type="submit" value="DELETE" class="btn btn-danger">
-                        </form>
 
-                    </div>
+
+                    <form>
+                        <input name='delete_this' value={{item.id}} style="display:none;">
+                        <input type="submit" value="DELETE" class="btn btn-danger">
+                    </form>
+
                 </div>
-                <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                        <p>{{ item.message }}</p>
-                        <footer class="blockquote-footer">{{ item.posted }} this is the id:{{user_id}}<cite
-                                title="Source Title">{{ item.title }} - {{item.posted}}</cite></footer>
-                    </blockquote>
-                </div>
-
             </div>
-            <h4><em>Remarks</em></h4>
-
-            <div class="container">
-                {% if comments %}
-                {% for comment in comments %}
-                {% if comment.blog_id == item.id%}
-                <span>{{comment.comment}}: {{comment.user.username}}</span>
-                <form>
-                    <input name='delete_comment' value={{comment.id}} style="display:none;">
-                    <input type="submit" value="DELETE" class="btn btn-warning">
-                </form>
-                <br>
-                {% endif %}
-                {% endfor %}
-                {% endif %}
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>{{ item.message }}</p>
+                    <footer class="blockquote-footer">{{ item.posted }} this is the id:{{user_id}}<cite
+                            title="Source Title">{{ item.title }} - {{item.posted}}</cite></footer>
+                </blockquote>
             </div>
-            {% if current_user.is_authenticated %}
-            <form action="blog/comment/new/{{item.id}}" method="post">
-                <input type="text" name="review" class="form-control" required>
-                <input type="submit">
+
+        </div>
+        <h4><em>Remarks</em></h4>
+
+        <div class="container">
+            {% if comments %}
+            {% for comment in comments %}
+            {% if comment.blog_id == item.id%}
+            <span>{{comment.comment}}: {{comment.user.username}}</span>
+            <form>
+                <input name='delete_comment' value={{comment.id}} style="display:none;">
+                <input type="submit" value="DELETE" class="btn btn-warning">
             </form>
-
-
-
+            <br>
+            {% endif %}
+            {% endfor %}
             {% endif %}
         </div>
-        <br>
-        <br>
-        {% endfor %}
-        {% else %}
-        <br>
-        <br> <br> <br> <br>  <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>        
-        <h4 style="font-style: italic;text-align:left;font-family: 'Ranga', cursive;font-size: 40px">Please sign up or login to post blogs </h4>
         {% if current_user.is_authenticated %}
-        <button><a href="/user/{{current_user.username}}/blog" class="btn btn- success ">Your Blog</a></button>
+        <form action="blog/comment/new/{{item.id}}" method="post">
+            <input type="text" name="review" class="form-control" required>
+            <input type="submit">
+        </form>
+
+
 
         {% endif %}
-        {% endif %}
-        
+    </div>
+    <br>
+    <br>
+    {% endfor %}
+    {% else %}
+    <br>
+    {% if current_user.is_authenticated %}
+    {%else%}
+    <h4 style="font-style: italic;text-align:left;font-family: 'Ranga', cursive;font-size: 40px;text-align: left">Please sign up or login to post blogs </h4>
    
+    {% endif %}
+    <button><a href="/user/{{current_user.username}}/blog" class="btn btn- success ">Your Blog</a></button>
+
+
+    {% endif %}
+
+
     </div>
 </body>
 {% endblock %}
